@@ -1,0 +1,12 @@
+git remote add upstream https://github.com/juhania/ShoutOutEvents.git -> creates new remote called upstream which points to Juhania's original repository
+git fetch upstream -> fetch whatever new changes were made on upstream to your local repo
+git merge upstream/master -> merges any changes to your local working files
+git status -> checks anything new
+
+git add 'file name' -> stages changes to be ready to commit
+git commit -m 'name' -> commits the files, names the commit to name
+git push origin master -> sends commits to 'master' branch
+
+git remote add origin -> adds new remote called origin
+git remote -> checks for current remotes
+git remote rm origin -> removes remote called origin
