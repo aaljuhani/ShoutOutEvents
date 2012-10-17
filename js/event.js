@@ -25,7 +25,7 @@ e.save({
 	});
 	
 	$("ul").prepend("<li><a href="+"page"+">"+e.get("Event")+"</a><span class="+"ui-li-count"+">"+ e.get("Attendees") +"</span><a href="+"#"+" onclick="+"incAttendees("+e.get("objectId")+">Join</a></li>");
-		
+	
 		$("ul").listview("refresh");
 	
 }
@@ -45,14 +45,15 @@ query.find({
     	eventArray = results;
 		var len = eventArray.length;
 	    var E;
+		var id;
 		//iterate through and display the objects
 	for(i = 0; i < len; i++) {
 		E = eventArray[i];
 		//alert(E.id);
-		
-		
-	$("ul").append("<li><a href="+"eventComments"+">"+E.get("Event")+"</a><span class="+"ui-li-count"+">"+ E.get("Attendees") +"</span><a href="+"#"+" onclick="+"incAttendees()"+">Join</a></li>");
-		
+		id = E.id;
+		alert(id);
+	$("ul").append("<li><a href="+"eventComments"+">"+E.get("Event")+"</a><span class="+"ui-li-count"+">"+ E.get("Attendees") +"</span><a href="+"#"+" onclick="+"incAttendees(id)"+">Join</a></li>");
+	
 		$("ul").listview("refresh");
 		}
 	
@@ -64,26 +65,29 @@ query.find({
 });	
 }
 
-function incAttendees()
+function incAttendees(EventID)
 {
-	alert("incAttendees");/*
+	alert("incAttendees");
+	alert(EventID);
 var E = Parse.Object.extend("Event");
 var query = new Parse.Query(E);
 query.get(EventID, {
   success: function(E) {
 // The object was retrieved successfully.
+	alert("object retrieved");
 	
 		
 //get specific info on object
-E.get("Attendees")++;
-
+//E.get("Attendees")++;
+E.increment("Attendees");
+E.save();
   },
   error: function(E, error) {
     // The object was not retrieved successfully.
     // error is a Parse.Error with an error code and description.
 	alert("there was an error retreiving object");
   }
-});*/
+});
 
 
 	
