@@ -2,10 +2,9 @@
 Parse.initialize("vd4AGWyFCpawPBI9o2hugn1YmRy1q0vV3aLSd3gr", "E7KcLQkrYLrccAcHGNamDkzXKDOqzfkQYoSdg7TJ");
 
 
-
 function newEvent()
 {
-	alert("createEvent");
+	//alert("createEvent");
 
 //creates subclass for Parse Object
 var Event = Parse.Object.extend("Event");
@@ -17,6 +16,11 @@ e.save({
 	Attendees: 1 ,
 	}, {
   		success: function(e) {
+			
+			$("ul").prepend("<li id="+String(e.id)+"><a href="+"eventComments"+">"+e.get("Event")+"</a><span class="+"ui-li-count"+">"+ e.get("Attendees") +"</span><a onClick= incAttendees(this.parentNode.id);>Join</a></li>");
+		
+	
+		$("ul").listview("refresh");
     			//it worked, do nothing
   	},
 		error: function(e, error) {
@@ -24,37 +28,36 @@ e.save({
 	}
 	});
 	
-	$("ul").prepend("<li><a href="+"page"+">"+e.get("Event")+"</a><span class="+"ui-li-count"+">"+ e.get("Attendees") +"</span><a href="+"#"+" onclick="+"incAttendees("+e.get("objectId")+">Join</a></li>");
-	
-		$("ul").listview("refresh");
 	
 }
 
 
 function retreiveEventList()
 {
-	//alert("retreiveEventList");
+	
 	var query = new Parse.Query("Event");
 	//array that stores list of event objects
     var eventArray = new Array();
-	
+	query.descending("createdAt");
 query.find({
 	success: function(results) {
     	// results is an array of Parse.Object.
 		
     	eventArray = results;
 		var len = eventArray.length;
-	    var E;
-		var id;
+	    var e;
+				
 		//iterate through and display the objects
 	for(i = 0; i < len; i++) {
-		E = eventArray[i];
-		//alert(E.id);
-		id = E.id;
-		alert(id);
-	$("ul").append("<li><a href="+"eventComments"+">"+E.get("Event")+"</a><span class="+"ui-li-count"+">"+ E.get("Attendees") +"</span><a href="+"#"+" onclick="+"incAttendees(id)"+">Join</a></li>");
+		e = eventArray[i];
+		//alert( String(e.id));
+			
+        $("ul").append("<li id="+String(e.id)+"><a href="+"eventComments"+">"+e.get("Event")+"</a><span class="+"ui-li-count"+">"+ e.get("Attendees") +"</span><a onClick= incAttendees(this.parentNode.id);>Join</a></li>");
+		
 	
 		$("ul").listview("refresh");
+		
+		
 		}
 	
   },
@@ -67,20 +70,18 @@ query.find({
 
 function incAttendees(EventID)
 {
-	alert("incAttendees");
-	alert(EventID);
-var E = Parse.Object.extend("Event");
-var query = new Parse.Query(E);
-query.get(EventID, {
-  success: function(E) {
-// The object was retrieved successfully.
-	alert("object retrieved");
 	
-		
+var e = Parse.Object.extend("Event");
+var query = new Parse.Query(e);
+query.get(EventID, {
+  success: function(e) {
+// The object was retrieved successfully.
+//	alert("object retrieved");
+	
 //get specific info on object
-//E.get("Attendees")++;
-E.increment("Attendees");
-E.save();
+e.increment("Attendees");
+e.save();
+$("ul").listview("refresh");
   },
   error: function(E, error) {
     // The object was not retrieved successfully.
@@ -88,7 +89,12 @@ E.save();
 	alert("there was an error retreiving object");
   }
 });
-
-
 	
+}
+
+
+
+function retreiveEventComments(EventID)
+{
+alert("showcomments");
 }
