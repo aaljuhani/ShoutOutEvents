@@ -17,10 +17,10 @@ e.save({
 	}, {
   		success: function(e) {
 			
-			$("ul").prepend("<li id="+String(e.id)+"><a href="+"eventDetails"+">"+e.get("Event")+"</a><span class="+"ui-li-count"+">"+ e.get("Attendees") +"</span><a onClick= incAttendees(this.parentNode.id);>Join</a></li>");
+			$("#eventlist").prepend("<li id="+String(e.id)+"><a href="+"eventDetails"+">"+e.get("Event")+"</a><span class="+"ui-li-count"+">"+ e.get("Attendees") +"</span><a onClick= incAttendees(this.parentNode.id);>Join</a></li>");
 		
 	
-		$("ul").listview("refresh");
+		$("#eventlist").listview("refresh");
     			//it worked, do nothing
   	},
 		error: function(e, error) {
@@ -52,10 +52,10 @@ query.find({
 		e = eventArray[i];
 		//alert( String(e.id));
 			
-        $("ul").append("<li id="+String(e.id)+"><a href="+"eventDetails"+">"+e.get("Event")+"</a><span class="+"ui-li-count"+">"+ e.get("Attendees") +"</span><a onClick= incAttendees(this.parentNode.id);>Join</a></li>");
+        $("#eventlist").append("<li id="+String(e.id)+"><a href="+"eventDetails"+">"+e.get("Event")+"</a><span class="+"ui-li-count"+">"+ e.get("Attendees") +"</span><a onClick= incAttendees(this.parentNode.id);>Join</a></li>");
 		
 	
-		$("ul").listview("refresh");
+		$("#eventlist").listview("refresh");
 		
 		
 		}
@@ -81,7 +81,7 @@ query.get(EventID, {
 //get specific info on object
 e.increment("Attendees");
 e.save();
-$("ul").listview("refresh");
+$("#eventlist").listview("refresh");
   },
   error: function(E, error) {
     // The object was not retrieved successfully.
@@ -93,10 +93,13 @@ $("ul").listview("refresh");
 }
 
 
+$(document).delegate('#eventDetails', 'pageshow', function () {
+    //Your code for each page load here
+	retreiveEventDetails();
+});
 
 
-
-function retreiveEventComments(EventID)
+function retreiveEventDetails()
 {
 alert("showcomments");
 }
