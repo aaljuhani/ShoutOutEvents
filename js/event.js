@@ -17,7 +17,7 @@ e.save({
 	}, {
   		success: function(e) {
 			
-			$("ul").prepend("<li id="+String(e.id)+"><a href="+"eventComments"+">"+e.get("Event")+"</a><span class="+"ui-li-count"+">"+ e.get("Attendees") +"</span><a onClick= incAttendees(this.parentNode.id);>Join</a></li>");
+			$("ul").prepend("<li id="+String(e.id)+"><a href="+"eventDetails"+">"+e.get("Event")+"</a><span class="+"ui-li-count"+">"+ e.get("Attendees") +"</span><a onClick= incAttendees(this.parentNode.id);>Join</a></li>");
 		
 	
 		$("ul").listview("refresh");
@@ -52,7 +52,7 @@ query.find({
 		e = eventArray[i];
 		//alert( String(e.id));
 			
-        $("ul").append("<li id="+String(e.id)+"><a href="+"eventComments"+">"+e.get("Event")+"</a><span class="+"ui-li-count"+">"+ e.get("Attendees") +"</span><a onClick= incAttendees(this.parentNode.id);>Join</a></li>");
+        $("ul").append("<li id="+String(e.id)+"><a href="+"eventDetails"+">"+e.get("Event")+"</a><span class="+"ui-li-count"+">"+ e.get("Attendees") +"</span><a onClick= incAttendees(this.parentNode.id);>Join</a></li>");
 		
 	
 		$("ul").listview("refresh");
@@ -91,6 +91,8 @@ $("ul").listview("refresh");
 });
 	
 }
+
+
 
 
 
