@@ -1,6 +1,18 @@
 // JavaScript Document
 Parse.initialize("vd4AGWyFCpawPBI9o2hugn1YmRy1q0vV3aLSd3gr", "E7KcLQkrYLrccAcHGNamDkzXKDOqzfkQYoSdg7TJ");
+var eventArray = new Array();
 
+function refreshPage() {
+  $.mobile.changePage(
+    window.location.reload(),
+    {
+      allowSamePageTransition : true,
+      transition              : 'none',
+      showLoadMsg             : false,
+      reloadPage              : true
+    }
+  );
+}
 
 function newEvent()
 {
@@ -17,10 +29,10 @@ e.save({
 	}, {
   		success: function(e) {
 			
-			$("#eventlist").prepend("<li id="+String(e.id)+"><a href="+"eventDetails"+">"+e.get("Event")+"</a><span class="+"ui-li-count"+">"+ e.get("Attendees") +"</span><a onClick= incAttendees(this.parentNode.id);>Join</a></li>");
+			$("ul").prepend("<li id="+String(e.id)+"><a href="+"eventComments"+">"+e.get("Event")+"</a><span class="+"ui-li-count"+">"+ e.get("Attendees") +"</span><a onClick= incAttendees(this.parentNode.id);>Join</a></li>");
 		
 	
-		$("#eventlist").listview("refresh");
+		$("ul").listview("refresh");
     			//it worked, do nothing
   	},
 		error: function(e, error) {
@@ -37,7 +49,6 @@ function retreiveEventList()
 	
 	var query = new Parse.Query("Event");
 	//array that stores list of event objects
-    var eventArray = new Array();
 	query.descending("createdAt");
 query.find({
 	success: function(results) {
@@ -51,11 +62,10 @@ query.find({
 	for(i = 0; i < len; i++) {
 		e = eventArray[i];
 		//alert( String(e.id));
-			
-        $("#eventlist").append("<li id="+String(e.id)+"><a href="+"eventDetails"+">"+e.get("Event")+"</a><span class="+"ui-li-count"+">"+ e.get("Attendees") +"</span><a onClick= incAttendees(this.parentNode.id);>Join</a></li>");
+        $("ul").append("<li id="+String(e.id)+"><a href="+"eventComments"+">"+e.get("Event")+"</a><span class="+"ui-li-count"+">"+ e.get("Attendees") +"</span><a onClick= incAttendees(this.parentNode.id);>Join</a></li>");
 		
 	
-		$("#eventlist").listview("refresh");
+		$("ul").listview("refresh");
 		
 		
 		}
@@ -81,7 +91,9 @@ query.get(EventID, {
 //get specific info on object
 e.increment("Attendees");
 e.save();
-$("#eventlist").listview("refresh");
+$("ul").listview("refresh");
+refreshPage();
+
   },
   error: function(E, error) {
     // The object was not retrieved successfully.
@@ -93,13 +105,8 @@ $("#eventlist").listview("refresh");
 }
 
 
-$(document).delegate('#eventDetails', 'pageshow', function () {
-    //Your code for each page load here
-	retreiveEventDetails();
-});
 
-
-function retreiveEventDetails()
+function retreiveEventComments(EventID)
 {
 alert("showcomments");
 }
