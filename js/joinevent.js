@@ -7,20 +7,24 @@ Parse.initialize("vd4AGWyFCpawPBI9o2hugn1YmRy1q0vV3aLSd3gr", "E7KcLQkrYLrccAcHGN
 var eventArray = new Array();
 
 //creates events from user input, have to implement front end
+<<<<<<< HEAD
 function createEvent() {
 >>>>>>> 98a49f22d2d088ce7b288f7c3a70744512dbaa19
+=======
+function createEvent(event, location, day, time, description, creator) {
+>>>>>>> origin/master
 //creates subclass for Parse Object
 var Event = Parse.Object.extend("Event");
 // Create a new instance of that class.
 var e = new Event();
 //saves the fields and value
 e.save({
-	Event: "Soccer Game",
-	Location: "lakeside field",
-	Day: "Wed",
-	Time: "7:00pm",
-	Description: "Let's play soccer before it gets cold",
-	Creator: "Mark",
+	Event: event,
+	Location: location,
+	Day: day,
+	Time: time,
+	Description: description,
+	Creator: creator,
 	}, {
   		success: function(e) {
     			//it worked, do nothing
@@ -124,7 +128,10 @@ function displayObjects(){
 		document.getElementById("eventList").appendChild(newDes);
 	}
 }
+<<<<<<< HEAD
 >>>>>>> 98a49f22d2d088ce7b288f7c3a70744512dbaa19
 
 
 
+=======
+>>>>>>> origin/master
