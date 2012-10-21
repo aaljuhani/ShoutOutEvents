@@ -1,6 +1,20 @@
 // JavaScript Document
 Parse.initialize("vd4AGWyFCpawPBI9o2hugn1YmRy1q0vV3aLSd3gr", "E7KcLQkrYLrccAcHGNamDkzXKDOqzfkQYoSdg7TJ");
 
+var eventArray = new Array();
+
+function refreshPage() {
+  $.mobile.changePage(
+    window.location.reload(),
+    {
+      allowSamePageTransition : true,
+      transition              : 'none',
+      showLoadMsg             : false,
+      reloadPage              : true
+    }
+  );
+}
+
 
 function newEvent()
 {
@@ -82,6 +96,7 @@ query.get(EventID, {
 e.increment("Attendees");
 e.save();
 $("#eventlist").listview("refresh");
+refreshPage();
   },
   error: function(E, error) {
     // The object was not retrieved successfully.
@@ -102,4 +117,10 @@ $(document).delegate('#eventDetails', 'pageshow', function () {
 function retreiveEventDetails()
 {
 alert("showcomments");
+// get Title and creator
+
+// get comments
+
+
+
 }
