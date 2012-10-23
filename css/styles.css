@@ -15,8 +15,21 @@ body {
 }
 
 #main h1 {
-    margin-top: 0;
-    font-size: 35px;
+	margin-top: 0;
+	font-size: 35px;
+	alignment-adjust: central;
+	text-align: center;
+}
+
+#eventList {
+	width: 500px;
+    margin: auto;
+    text-align: left;
+    background: white;
+    padding: 50px 60px;
+    border: solid #ddd;
+    border-width: 0 1px 1px 1px;
+
 }
 
 #main ul {

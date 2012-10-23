@@ -29,11 +29,11 @@
 	
    <ul id="eventlist" data-role="listview" data-split-icon="plus" data-inset="true">
 
- <!--  <li id="ZXYejdI6RY">
-   <a href="#">Page</a>
+ <!-- <li id="ZXYejdI6RY">
+   <a href="javascript:void(0)" onClick=retreiveEventDetails("ZXYejdI6RY");" >Page</a>
    <span class="ui-li-count">1</span>
    <a onClick= alert();>Default</a></li>
-        <li><a href="#">Page</a><span class="ui-li-count">1</span><a href="#">Default</a></li>
+       <!-- <li><a href="#">Page</a><span class="ui-li-count">1</span><a href="#">Default</a></li>
       <li><a href="#">Page</a><span class="ui-li-count">1</span><a href="#">Join</a></li>-->
     </ul>
     		
@@ -48,9 +48,9 @@
 		<h1>Event Details</h1>
 	</div>
     
-	<div data-role="content" data>	
+	<div data-role="content" >	
 		<div id="details">
-		<h2 id="event">Event Title</h2>
+		<h2 id="eventTitle">Event Title</h2>
         <h3 id="eventCreator">By</h3>
 	      </div>
         
@@ -58,8 +58,10 @@
         </div>
         
         <div >
-          <ul id="commentslist" data-role="listview" data-inset="true" >
-            <li>
+          <ul id="commentslist" data-inset="true" data-role="listview" >
+          <h5>Comments</h5>
+          
+            <!--<li>
               <h3>user 1</h3>
               <p>Lorem ipsum</p>
               <p class="ui-li-aside">Aside</p>
@@ -73,7 +75,7 @@
               <h3>user 3</h3>
               <p>Lorem ipsum</p>
               <p class="ui-li-aside">Aside</p>
-            </li>
+            </li>-->
           </ul>        
         </div>
         
