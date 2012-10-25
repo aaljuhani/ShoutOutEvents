@@ -1,6 +1,0 @@
-How to add Changes to the Master
-git status
-git add (filenames)
-git status
-git commit -m 'second change'
-git push origin master

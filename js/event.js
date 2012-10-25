@@ -184,7 +184,6 @@ function newComment()
 	
 	var EventID;
 	var eventTitle = document.getElementById("eventTitle").innerHTML;
-	alert (eventTitle);
 	//look for event Id 
 var e = Parse.Object.extend("Event");
 var query = new Parse.Query(e);

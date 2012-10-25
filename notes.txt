@@ -10,3 +10,4 @@ git push origin master -> sends commits to 'master' branch
 git remote add origin -> adds new remote called origin
 git remote -> checks for current remotes
 git remote rm origin -> removes remote called origin
+git pull origin master -> pulls changes from origin to local
