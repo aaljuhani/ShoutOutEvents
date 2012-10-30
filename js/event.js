@@ -25,12 +25,16 @@ var Event = Parse.Object.extend("Event");
 // Create a new instance of that class.
 var e = new Event();
 //saves the fields and value
+var Creator = document.getElementById("newCreator").value;
+var eventName = document.getElementById("newEvent").value;
 e.save({
-	Event: document.getElementById("newEvent").value ,
+	
+	Event: "Join " + Creator + " for " + eventName ,
+	
 	Attendees: 1 ,
 	}, {
   		success: function(e) {
-			
+
 			$("#eventlist").prepend("<li id="+String(e.id)+"><a href="+"javascript:void(0)"+" onClick= retreiveEventDetails(this.parentNode.parentNode.parentNode.id);>"+e.get("Event")+"</a><span class="+"ui-li-count"+">"+ e.get("Attendees") +"</span><a onClick= incAttendees(this.parentNode.id);>Join</a></li>");
 		
 	
@@ -41,7 +45,8 @@ e.save({
 			alert("there was an error");
 	}
 	});
-	
+	document.getElementById("newCreator").value = "";
+	document.getElementById("newEvent").value = "";
 	
 }
 
@@ -81,9 +86,15 @@ query.find({
 });	
 }
 
+var participant;
 function incAttendees(EventID)
 {
 	
+	 participant = prompt("Please enter your name","Your Name");
+	
+	if (participant != null)
+	{
+		
 var e = Parse.Object.extend("Event");
 var query = new Parse.Query(e);
 query.get(EventID, {
@@ -93,6 +104,8 @@ query.get(EventID, {
 	
 //get specific info on object
 e.increment("Attendees");
+e.add("Participant", participant);
+//e.Participant[Participant.length()-1] = participant;
 e.save();
 $("#eventlist").listview("refresh");
 refreshPage();
@@ -106,7 +119,7 @@ refreshPage();
 });
 	
 }
-
+}
 
 
 function retreiveEventDetails(EventID)
@@ -128,6 +141,23 @@ document.getElementById("eventCreator").innerHTML ="";
 //$("#eventDetails").listview("refresh");
 //refreshPage();
 //$.mobile.pageLoading(true);
+var participantArray = e.get("Participant");
+var colArray = ['a','b','c'];
+
+//clear the current list of participant 
+		$('#listofjoiners').children().remove('div');
+
+for (i =0 ; i < participantArray.length ; i++)
+{
+
+$('#listofjoiners').append("<div class="+"ui-block-"+colArray[i%(colArray.length)]+">" + participantArray[i] + "</div>");
+}
+
+
+
+
+
+
   },
   error: function(E, error) {
     // The object was not retrieved successfully.
@@ -213,6 +243,7 @@ c.save({
 	
 		$("#commentslist").listview("refresh");
     			//it worked, do nothing
+	document.getElementById("newComment").value = "";
   	},
 		error: function(e, error) {
 			alert("there was an error");
@@ -226,6 +257,7 @@ c.save({
 	alert("there was an error retreiving object");
   }
 });
+
 
 }
 
