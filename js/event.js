@@ -212,11 +212,13 @@ query.find({
 function newComment()
 {
 	
-	var EventID;
-	var eventTitle = document.getElementById("eventTitle").innerHTML;
-	//look for event Id 
+var EventID;
+var eventTitle = document.getElementById("eventTitle").innerHTML;
+//look for event Id 
 var e = Parse.Object.extend("Event");
 var query = new Parse.Query(e);
+
+
 query.equalTo("Event",eventTitle );
 query.first({
   success: function(e) {
@@ -224,16 +226,15 @@ query.first({
 
 //get specific info on object
 EventID = e.id;
-//alert("event Id ="+ EventID);
-
 // add comments
 //creates subclass for Parse Object
+var Commenter = document.getElementById("newCommenter").value;
 var Comment = Parse.Object.extend("Comment");
 // Create a new instance of that class.
 var c = new Comment();
 //saves the fields and value
 c.save({
-	comment: document.getElementById("newComment").value ,
+	comment: Commenter + ": " + document.getElementById("newComment").value ,
 	EventId: EventID ,
 	}, {
   		success: function(c) {
