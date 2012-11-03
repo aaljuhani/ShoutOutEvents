@@ -6,6 +6,33 @@
     padding: 0 25px;
 }
 
+#CommentText {
+	padding: .4em; 
+	text-align: center; }
+	
+#listofjoiners{
+padding: 15px;
+font-style:oblique;
+font-size:18px; 	
+}
+
+h3 {
+padding-left: 15px; 		
+}
+
+h5 {
+padding-left: 15px; 		
+}
+
+.min-width-480px .ui-li-aside{
+	width: 15%;
+}
+
+
+.ui-btn-up-c
+{
+	cursor:default;}
+
 
 .ui-li .ui-btn-text 
 {

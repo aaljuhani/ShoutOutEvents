@@ -244,6 +244,7 @@ c.save({
 	
 		$("#commentslist").listview("refresh");
     			//it worked, do nothing
+	document.getElementById("newCommenter").value = "";
 	document.getElementById("newComment").value = "";
   	},
 		error: function(e, error) {
